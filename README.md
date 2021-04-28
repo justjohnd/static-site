@@ -35,3 +35,4 @@ $ node_modules/gulp/bin/gulp.js watch
 
 Browsersync should automatically open a browser on port 3000.
 
+# static-site
