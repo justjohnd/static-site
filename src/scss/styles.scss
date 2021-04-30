@@ -1,12 +1,5 @@
+@import 'node_modules/bootstrap/scss/bootstrap';
+
 $theme-colors: (
-    "primary": #FF69B4
+  'primary': red,
 );
-
-@import "node_modules/bootstrap/scss/bootstrap";
-
-body {
-    color: grey;
-    background: rgb(92,18,18);
-    height: 400vh;
-}
-

@@ -1,30 +1,96 @@
+// const { task } = require('gulp');
 const gulp = require('gulp');
 const sass = require('gulp-sass');
+const sourcemaps = require('gulp-sourcemaps');
 const browserSync = require('browser-sync').create();
+const cssnano = require('gulp-cssnano');
+const uglify = require('gulp-uglify');
+const imagemin = require('gulp-imagemin');
+const cache = require('gulp-cache');
+const htmlmin = require('gulp-htmlmin');
+const del = require('del');
+const autoprefixer = require('gulp-autoprefixer');
+const babel = require('gulp-babel');
 
-//compile scss into css
+// Compile and minify css from scss. Create source map
 function style() {
-    //1.where is my scss
-    return gulp.src('src/scss/**/*.scss') //gets all files ending with .scss in src/scss
-    //2. pass that file through sass compiler
-    .pipe(sass().on('error',sass.logError))
-    //3. where do I save the compiled css file
-    .pipe(gulp.dest('src/css'))
-    //4. stream change to all browsers
+  return gulp
+    .src(['./src/scss/**/*.scss', '!./dist'])
+    .pipe(sourcemaps.init())
+    .pipe(autoprefixer())
+    .pipe(sass())
+    .pipe(cssnano())
+    .pipe(sourcemaps.write('.'))
+    .pipe(gulp.dest('./dist/css'))
     .pipe(browserSync.stream());
 }
-
-function watch() {
-    browserSync.init({
-        server: {
-            baseDir: "./src",
-            index: "/index.html"
-        }
-    });
-    gulp.watch('src/scss/**/*.scss', style);
-    gulp.watch('./*.html').on('change',browserSync.reload);
-    gulp.watch('./js/**/*.js').on('change', browserSync.reload);
-}
-
 exports.style = style;
-exports.watch = watch;
+
+// Javascript
+function javascript() {
+  return gulp
+    .src(['./src/js/**/*.js', '!./dist'])
+    .pipe(
+      babel({
+        presets: ['@babel/env'],
+      })
+    )
+    .pipe(uglify())
+    .pipe(gulp.dest('./dist/js'));
+}
+exports.javascript = javascript;
+
+// Images optimization
+function minifyImage() {
+  return gulp
+    .src(['./src/img/**/*.+(png|jpg|gif|svg)', '!./dist'])
+    .pipe(cache(imagemin()))
+    .pipe(gulp.dest('./dist/img/'));
+}
+exports.minifyImage = minifyImage;
+
+//  HTML Minify
+function minifyHTML() {
+  return gulp
+    .src(['./src/**/*.html', './index.html', '!./dist'])
+    .pipe(
+      htmlmin({
+        collapseWhitespace: true,
+      })
+    )
+    .pipe(gulp.dest('./dist'));
+}
+exports.minifyHTML = minifyHTML;
+
+// Watch task with BrowserSync
+gulp.task('watch', function () {
+  browserSync.init({
+    server: {
+      baseDir: './',
+    },
+  });
+
+  gulp.watch('./src/scss/**/*.scss', style).on('change', browserSync.reload);
+  gulp.watch('./src/js/**/*.js', javascript).on('change', browserSync.reload);
+  gulp
+    .watch(['./src/**/*.html', './index.html'], minifyHTML)
+    .on('change', browserSync.reload);
+  gulp
+    .watch('./src/img/**/*.+(png|jpg|gif|svg)', minifyImage)
+    .on('change', browserSync.reload);
+});
+
+// Clear cache
+
+gulp.task('clear-cache', function (done) {
+  return cache.clearAll(done);
+});
+
+// Task to delete target build folder
+gulp.task('clean', function () {
+  return del(['./dist/**', '!./dist']);
+});
+
+// Gulp default command
+
+gulp.task('default', gulp.series(['watch']));
