@@ -1,9 +1,3 @@
 import bootstrap from 'bootstrap';
 
-function best() {
-  console.log('this is a test');
-}
-
-best();
-
-//testning
+import randomImg from './helpers/randomImg.js';

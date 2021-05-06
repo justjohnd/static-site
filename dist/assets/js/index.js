@@ -16693,6 +16693,26 @@ module.exports = function (module) {
 
 /***/ }),
 
+/***/ "./src/js/helpers/randomImg.js":
+/*!*************************************!*\
+  !*** ./src/js/helpers/randomImg.js ***!
+  \*************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function renderGalleryItem(id) {
+  var randomNumber = Math.floor(Math.random() * 242);
+  fetch("https://source.unsplash.com/collection/1163637/480x480/?sig=".concat(randomNumber)).then(function (response) {
+    document.getElementById('id').src = response.url;
+  });
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (renderGalleryItem);
+
+/***/ }),
+
 /***/ "./src/js/index.js":
 /*!*************************!*\
   !*** ./src/js/index.js ***!
@@ -16704,13 +16724,9 @@ module.exports = function (module) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.js");
 /* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(bootstrap__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _helpers_randomImg_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./helpers/randomImg.js */ "./src/js/helpers/randomImg.js");
 
 
-function best() {
-  console.log('this is a test');
-}
-
-best(); //testning
 
 /***/ }),
 

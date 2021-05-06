@@ -199,7 +199,6 @@ function watch() {
   gulp
     .watch(['src/**/*.html', 'index.html'])
     .on('all', gulp.series(minifyHTML, browser.reload));
-  gulp.watch('src/helpers/**/*.js').on('all', browser.reload);
 }
 
 // Clear cache
