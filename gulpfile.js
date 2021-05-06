@@ -1,53 +1,171 @@
-// const { task } = require('gulp');
+const plugins = require('gulp-load-plugins');
 const gulp = require('gulp');
-const sass = require('gulp-sass');
-const sourcemaps = require('gulp-sourcemaps');
-const browserSync = require('browser-sync').create();
-const cssnano = require('gulp-cssnano');
+const del = require('delete');
+const webpackStream = require('webpack-stream');
+const webpack2 = require('webpack');
+const yargs = require('yargs');
+const named = require('vinyl-named');
+const browser = require('browser-sync');
+const autoprefixer = require('autoprefixer');
+var cssnano = require('cssnano');
+const rename = require('gulp-rename');
 const uglify = require('gulp-uglify');
+const htmlmin = require('gulp-htmlmin');
 const imagemin = require('gulp-imagemin');
 const cache = require('gulp-cache');
-const htmlmin = require('gulp-htmlmin');
-const del = require('del');
-const autoprefixer = require('gulp-autoprefixer');
-const babel = require('gulp-babel');
+const concat = require('gulp-concat');
+const panini = require('panini');
+const i18n = require('gulp-html-i18n');
+// const env = require('dotenv').config(); Currently not using
+// const Dotenv = require('dotenv-webpack');
 
-// Compile and minify css from scss. Create source map
-function style() {
+// Load all Gulp plugins into one variable
+const $ = plugins();
+
+// Check for --production flag
+const PRODUCTION = !!yargs.argv.production;
+
+const PORT = 9999;
+
+const PATHS = {
+  DIST: 'dist',
+  ASSETS: 'dist/assets',
+};
+
+gulp.task(
+  'build',
+  gulp.series(clean, gulp.parallel(javascript, sass, image, minifyHTML))
+);
+
+gulp.task('default', gulp.series('build', server, watch));
+
+// Panini
+// function pages(done) {
+//   gulp
+//     .src('src/pages/**/*.html')
+//     .pipe(
+//       panini({
+//         root: 'src/pages/',
+//         layouts: 'src/layouts/',
+//         partials: 'src/partials/',
+//         helpers: 'src/helpers/',
+//         data: 'src/data/',
+//       })
+//     )
+//     .pipe(
+//       i18n({
+//         langDir: 'src/lang',
+//         delimiters: ['{${', '}$}'],
+//         createLangDirs: true,
+//         trace: true,
+//         defaultLang: 'en-US',
+//       })
+//     )
+//     .pipe(
+//       htmlmin({
+//         collapseWhitespace: true,
+//       })
+//     )
+//     .pipe(gulp.dest(`${PATHS.DIST}`));
+//   done();
+// }
+
+// Load updated HTML templates and partials into Panini
+// function resetPages(done) {
+//   panini.refresh();
+//   done();
+// }
+
+// Optimize image size
+function image() {
   return gulp
-    .src(['./src/scss/**/*.scss', '!./dist'])
-    .pipe(sourcemaps.init())
-    .pipe(autoprefixer())
-    .pipe(sass())
-    .pipe(cssnano())
-    .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest('./dist/css'))
-    .pipe(browserSync.stream());
+    .src('src/img/**/*')
+    .pipe(cache(imagemin()))
+    .pipe(gulp.dest(`${PATHS.ASSETS}/img`));
 }
-exports.style = style;
 
-// Javascript
+// Remove dist folder before building
+function clean(done) {
+  del([PATHS.DIST], done);
+}
+
+function sass() {
+  const postCssPlugins = [
+    // Autoprefixer
+    autoprefixer(),
+
+    // UnCSS - Uncomment to remove unused styles in production
+    // PRODUCTION && uncss.postcssPlugin(UNCSS_OPTIONS),
+    cssnano(),
+  ].filter(Boolean);
+
+  return gulp
+    .src('src/sass/styles.scss')
+    .pipe($.sourcemaps.init())
+    .pipe(
+      $.sass({
+        includePaths: '[]', // add paths to any 3rd party styles here
+      }).on('error', $.sass.logError)
+    )
+    .pipe($.postcss(postCssPlugins))
+    .pipe(
+      $.if(
+        PRODUCTION,
+        $.cleanCss({
+          compatibility: 'ie9',
+        })
+      )
+    )
+    .pipe($.if(!PRODUCTION, $.sourcemaps.write())) //Why doesn't a .map file show in assets?
+    .pipe(gulp.dest(`${PATHS.ASSETS}/css`))
+    .pipe(
+      browser.reload({
+        stream: true,
+      })
+    );
+}
+
+let webpackConfig = {
+  mode: PRODUCTION ? 'production' : 'development',
+  module: {
+    // exports: {
+    //     plugins: [
+    //             new Dotenv()
+    //         ]
+    // },
+    rules: [
+      {
+        test: /\.js$/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env'],
+            compact: false,
+          },
+        },
+      },
+    ],
+  },
+  devtool: !PRODUCTION && 'source-map',
+};
+
 function javascript() {
   return gulp
-    .src(['./src/js/**/*.js', '!./dist'])
+    .src('src/js/**/*')
+    .pipe(named())
+    .pipe($.sourcemaps.init())
+    .pipe(webpackStream(webpackConfig, webpack2))
     .pipe(
-      babel({
-        presets: ['@babel/env'],
-      })
+      $.if(
+        PRODUCTION,
+        $.terser().on('error', (e) => {
+          console.log(e);
+        })
+      )
     )
-    .pipe(uglify())
-    .pipe(gulp.dest('./dist/js'));
+    .pipe($.if(!PRODUCTION, $.sourcemaps.write()))
+    .pipe(gulp.dest(`${PATHS.ASSETS}/js`));
 }
-exports.javascript = javascript;
-
-// Images optimization
-function minifyImage() {
-  return gulp
-    .src(['./src/img/**/*.+(png|jpg|gif|svg)', '!./dist'])
-    .pipe(cache(imagemin()))
-    .pipe(gulp.dest('./dist/img/'));
-}
-exports.minifyImage = minifyImage;
 
 //  HTML Minify
 function minifyHTML() {
@@ -58,39 +176,34 @@ function minifyHTML() {
         collapseWhitespace: true,
       })
     )
-    .pipe(gulp.dest('./dist'));
+    .pipe(gulp.dest(`${PATHS.ASSETS}`));
 }
 exports.minifyHTML = minifyHTML;
 
-// Watch task with BrowserSync
-gulp.task('watch', function () {
-  browserSync.init({
-    server: {
-      baseDir: './',
+function server(done) {
+  browser.init(
+    {
+      server: {
+        baseDir: `./`,
+      },
+      port: PORT,
     },
-  });
+    done
+  );
+}
 
-  gulp.watch('./src/scss/**/*.scss', style).on('change', browserSync.reload);
-  gulp.watch('./src/js/**/*.js', javascript).on('change', browserSync.reload);
+function watch() {
+  gulp.watch('./**/*.img').on('all', image); // Bug: will update the file but need to manually reload
+  gulp.watch('src/**/*.js').on('all', gulp.series(javascript, browser.reload));
+  gulp.watch('src/**/*.scss').on('all', sass);
   gulp
-    .watch(['./src/**/*.html', './index.html'], minifyHTML)
-    .on('change', browserSync.reload);
-  gulp
-    .watch('./src/img/**/*.+(png|jpg|gif|svg)', minifyImage)
-    .on('change', browserSync.reload);
-});
+    .watch(['src/**/*.html', 'index.html'])
+    .on('all', gulp.series(minifyHTML, browser.reload));
+  gulp.watch('src/helpers/**/*.js').on('all', browser.reload);
+}
 
 // Clear cache
 
-gulp.task('clear-cache', function (done) {
+function clearCache(done) {
   return cache.clearAll(done);
-});
-
-// Task to delete target build folder
-gulp.task('clean', function () {
-  return del(['./dist/**', '!./dist']);
-});
-
-// Gulp default command
-
-gulp.task('default', gulp.series(['watch']));
+}
