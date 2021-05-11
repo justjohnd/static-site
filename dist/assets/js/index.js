@@ -16702,12 +16702,22 @@ module.exports = function (module) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-function renderGalleryItem(id) {
-  var randomNumber = Math.floor(Math.random() * 242);
-  fetch("https://source.unsplash.com/collection/1163637/480x480/?sig=".concat(randomNumber)).then(function (response) {
-    document.getElementById('id').src = response.url;
-  });
-}
+function renderGalleryItem() {
+  var _arguments = arguments;
+
+  var _loop = function _loop(i) {
+    var imageId = _arguments[i];
+    var randomNumber = Math.floor(Math.random() * 242);
+    fetch("https://source.unsplash.com/collection/1163637/1024x768/?sig=".concat(randomNumber)).then(function (response) {
+      document.getElementById(imageId).src = response.url;
+    });
+  };
+
+  for (var i = 0; i < arguments.length; i++) {
+    _loop(i);
+  }
+} // export default test;
+
 
 /* harmony default export */ __webpack_exports__["default"] = (renderGalleryItem);
 
@@ -16726,7 +16736,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(bootstrap__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _helpers_randomImg_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./helpers/randomImg.js */ "./src/js/helpers/randomImg.js");
 
+ //Add random unsplash images for development
 
+Object(_helpers_randomImg_js__WEBPACK_IMPORTED_MODULE_1__["default"])('js-random-img-1', 'js-random-img-2', 'js-random-img-3', 'js-random-img-4'); //Confirm jquery is loaded (if necessary, delete for production)
+
+console.log($);
+var waypoint = new Waypoint({
+  element: document.getElementById('js-navbar'),
+  handler: function handler() {
+    document.getElementById('nav').classList.add('bg-white');
+    document.getElementById('nav').classList.remove('bg-transparent');
+    var elements = document.getElementsByClassName('nav-link'); // get all elements
+
+    for (var i = 0; i < elements.length; i++) {
+      elements[i].classList.remove('text-white');
+      elements[i].classList.add('text-dark');
+    }
+  }
+});
 
 /***/ }),
 

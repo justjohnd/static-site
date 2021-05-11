@@ -1,0 +1,17 @@
+#gallery-container .col-12 {
+  margin-bottom: 0.5%;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+@media screen and (min-width: 576px) {
+  #gallery-container .col-sm-6 {
+    flex: 0 0 49.5%;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  #gallery-container .col-lg-4 {
+    flex: 0 0 33%;
+  }
+}

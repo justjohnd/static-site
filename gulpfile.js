@@ -39,43 +39,6 @@ gulp.task(
 
 gulp.task('default', gulp.series('build', server, watch));
 
-// Panini
-// function pages(done) {
-//   gulp
-//     .src('src/pages/**/*.html')
-//     .pipe(
-//       panini({
-//         root: 'src/pages/',
-//         layouts: 'src/layouts/',
-//         partials: 'src/partials/',
-//         helpers: 'src/helpers/',
-//         data: 'src/data/',
-//       })
-//     )
-//     .pipe(
-//       i18n({
-//         langDir: 'src/lang',
-//         delimiters: ['{${', '}$}'],
-//         createLangDirs: true,
-//         trace: true,
-//         defaultLang: 'en-US',
-//       })
-//     )
-//     .pipe(
-//       htmlmin({
-//         collapseWhitespace: true,
-//       })
-//     )
-//     .pipe(gulp.dest(`${PATHS.DIST}`));
-//   done();
-// }
-
-// Load updated HTML templates and partials into Panini
-// function resetPages(done) {
-//   panini.refresh();
-//   done();
-// }
-
 // Optimize image size
 function image() {
   return gulp

@@ -1,0 +1,38 @@
+/* Carousel */
+.img-slider {
+  height: 70vh;
+  object-fit: cover;
+}
+
+@media screen and (min-width: 576px) {
+  .img-slider {
+    height: 95vh;
+    width: 100%;
+  }
+}
+
+.carousel-header {
+  display: inline-block;
+  position: absolute;
+  z-index: 1;
+  align-items: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@media screen and (min-width: 576px) {
+  .carousel-header {
+    padding: 0 1rem;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .carousel-header {
+    padding: 0 5rem;
+  }
+}
+
+.carousel-indicators {
+  z-index: 5;
+}

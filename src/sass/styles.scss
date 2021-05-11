@@ -1,5 +1,29 @@
-$theme-colors: (
-  'primary': red,
-);
+@import './components/carousel-banner.scss';
+@import './components/image.scss';
+@import './components/bootstrap-theme.scss';
+@import './components/gallery-modal.scss';
+@import './components/navbar.scss';
 
+//Declare any bootstrap SCSS variables prior to importing the files
 @import 'node_modules/bootstrap/scss/bootstrap';
+
+body {
+  font-size: 1rem;
+}
+
+$my-default: 3rem; // Sets default y-axis margin
+
+@mixin my-container {
+  // Sets default y-axis margin for containers
+  margin-top: $my-default;
+  margin-bottom: $my-default;
+}
+
+.btn {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+.container {
+  @include my-container;
+}

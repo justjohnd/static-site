@@ -95,12 +95,22 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-function renderGalleryItem(id) {
-  var randomNumber = Math.floor(Math.random() * 242);
-  fetch("https://source.unsplash.com/collection/1163637/480x480/?sig=".concat(randomNumber)).then(function (response) {
-    document.getElementById('id').src = response.url;
-  });
-}
+function renderGalleryItem() {
+  var _arguments = arguments;
+
+  var _loop = function _loop(i) {
+    var imageId = _arguments[i];
+    var randomNumber = Math.floor(Math.random() * 242);
+    fetch("https://source.unsplash.com/collection/1163637/1024x768/?sig=".concat(randomNumber)).then(function (response) {
+      document.getElementById(imageId).src = response.url;
+    });
+  };
+
+  for (var i = 0; i < arguments.length; i++) {
+    _loop(i);
+  }
+} // export default test;
+
 
 /* harmony default export */ __webpack_exports__["default"] = (renderGalleryItem);
 
