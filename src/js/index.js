@@ -1,4 +1,5 @@
 import bootstrap from 'bootstrap';
+import ScrollOut from 'scroll-out';
 
 import renderGalleryItem from './helpers/randomImg.js';
 
@@ -25,4 +26,9 @@ const waypoint = new Waypoint({
       elements[i].classList.add('text-dark');
     }
   },
+});
+
+ScrollOut({
+  threshold: 0.2,
+  once: true,
 });
