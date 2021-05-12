@@ -3,12 +3,19 @@
 @import './components/bootstrap-theme.scss';
 @import './components/gallery-modal.scss';
 @import './components/navbar.scss';
+@import './components/footer.scss';
 
 //Declare any bootstrap SCSS variables prior to importing the files
 @import 'node_modules/bootstrap/scss/bootstrap';
 
 body {
   font-size: 1rem;
+}
+
+ul {
+  list-style-type: none;
+  margin-left: 0;
+  padding-left: 0;
 }
 
 $my-default: 3rem; // Sets default y-axis margin
@@ -22,6 +29,8 @@ $my-default: 3rem; // Sets default y-axis margin
 .btn {
   margin-left: 0.5rem;
   margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
 }
 
 .container {

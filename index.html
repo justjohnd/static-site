@@ -8,6 +8,13 @@
     />
     <link rel="stylesheet" href="./dist/assets/css/styles.css" />
 
+    <!-- Fontawesome -->
+    <link
+      rel="stylesheet"
+      href="./node_modules/@fortawesome/fontawesome-free/css/all.css"
+    />
+    <script src="./node_modules/@fortawesome/fontawesome-free/js/all.js"></script>
+
     <!-- These are for waypoints -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.0/jquery.waypoints.js"></script>
@@ -50,6 +57,10 @@
           </li>
           <li class="nav-item">
             <a class="nav-link text-white" href="#">Link</a>
+          </li>
+          <!-- If using a Sticky mobile footer, move the footer items into the nav menu, as they will not be accessable on a mobile phone -->
+          <li class="nav-item d-md-none">
+            <a class="nav-link text-white" href="#">Privacy Policy</a>
           </li>
           <li class="nav-item dropdown">
             <a
@@ -327,12 +338,19 @@
     </div>
 
     <!-- Button Group -->
-    <div data-scroll class="container text-center">
-      <button type="button" class="btn btn-primary d-inline">BUTTON</button>
+    <div class="container" data-scroll>
+      <div class="row text-center justify-content-center">
+        <div class="col-md-10 col-sm-12">
+          <button type="button" class="btn btn-primary d-inline">BUTTON</button>
+          <button type="button" class="btn btn-primary d-inline">BUTTON</button>
+          <button type="button" class="btn btn-primary d-inline">BUTTON</button>
+          <button type="button" class="btn btn-primary d-inline">BUTTON</button>
+        </div>
+      </div>
     </div>
 
     <!-- BS Grid: 7 cells-->
-    <div data-scroll class="container">
+    <div class="container" data-scroll>
       <div class="row mb-4">
         <div class="col-md-8 mb-4 mb-md-0 px-2">
           <div class="border h-100">
@@ -520,19 +538,27 @@
     </div>
 
     <!-- BS Text Section -->
-    <div data-scroll class="container w-50 text-center">
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, quia
-        accusantium, quaerat reiciendis praesentium rem ipsum laborum natus quod
-        voluptates modi quisquam mollitia tempore! Cumque tempore, soluta
-        voluptate neque aspernatur excepturi perspiciatis illum incidunt dolor
-        molestiae rerum blanditiis reiciendis! Voluptatibus possimus laborum
-        atque, officia similique commodi!
-      </p>
-      <button type="button" class="btn btn-primary d-inline">BUTTON</button>
-      <button type="button" class="btn btn-primary d-inline">BUTTON</button>
-      <button type="button" class="btn btn-primary d-inline">BUTTON</button>
-      <button type="button" class="btn btn-primary d-inline">BUTTON</button>
+    <div data-scroll class="container text-center">
+      <div class="row justify-content-center">
+        <div class="col-8 col-lg-6">
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, quia
+            accusantium, quaerat reiciendis praesentium rem ipsum laborum natus
+            quod voluptates modi quisquam mollitia tempore! Cumque tempore,
+            soluta voluptate neque aspernatur excepturi perspiciatis illum
+            incidunt dolor molestiae rerum blanditiis reiciendis! Voluptatibus
+            possimus laborum atque, officia similique commodi!
+          </p>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-10 col-sm-12">
+          <button type="button" class="btn btn-primary d-inline">BUTTON</button>
+          <button type="button" class="btn btn-primary d-inline">BUTTON</button>
+          <button type="button" class="btn btn-primary d-inline">BUTTON</button>
+          <button type="button" class="btn btn-primary d-inline">BUTTON</button>
+        </div>
+      </div>
     </div>
 
     <!-- BS Contact Form -->
@@ -569,6 +595,77 @@
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
     </section>
+
+    <!-- BS Footer -->
+    <!-- Mobile Sticky Footer. Note: if using this footer, move any footer links to the mobile menu -->
+    <div class="d-sm-block d-md-none">
+      <button class="btn btn-primary btn-full-width btn-block">
+        STICKY FOOTER BUTTON
+      </button>
+    </div>
+
+    <div class="bg-dark d-none d-md-block">
+      <div class="container mb-0">
+        <div class="row py-2">
+          <div class="col-sm-12 col-md-8">
+            <div class="row">
+              <div class="col-lg-12">
+                <ul
+                  class="
+                    mb-0
+                    text-left
+                    d-flex
+                    justify-content-center justify-content-md-start
+                  "
+                >
+                  <li>
+                    <a href="" target="_blank" rel="noopener noreferrer">
+                      <i class="h4 fab fa-facebook-square mr-4"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="" target="_blank" rel="noopener noreferrer">
+                      <i class="h4 fab fa-instagram-square"></i>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-lg-12">
+                <ul
+                  class="
+                    font-weight-bold
+                    mb-0
+                    d-flex
+                    justify-content-center justify-content-md-start
+                  "
+                >
+                  <li class="pl-0 mr-4">
+                    <a class="text-light" href="">TERMS OF USE</a>
+                  </li>
+                  <li class="">
+                    <a class="text-light mr-4" href="">PRIVACY POLICY</a>
+                  </li>
+                  <li class="">
+                    <a class="text-light" href="">CONTACT</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div
+            class="
+              text-white
+              col-sm-12 col-md-4
+              d-flex
+              align-items-end
+              justify-content-center justify-content-md-end
+            "
+          >
+            <p class="mb-0">Company name</p>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <script src="./dist/assets/js/index.js"></script>
   </body>
