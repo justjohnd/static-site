@@ -102,20 +102,23 @@ $my-default: 3rem; // Sets default y-axis margin
     + .carousel-item {
     transition: none;
   }
-  .multi-image.carousel-inner .carousel-item-next {
+  .carousel-inner .multi-image.carousel-item-next {
     position: relative;
     transform: translate3d(0, 0, 0);
   }
   /* left or forward direction */
-  .active.carousel-item-left + .carousel-item-next.carousel-item-left,
-  .carousel-item-next.carousel-item-left + .carousel-item,
-  .carousel-item-next.carousel-item-left + .carousel-item + .carousel-item {
+  .active.multi-image.carousel-item-left
+    + .carousel-item-next.carousel-item-left,
+  .multi-image.carousel-item-next.carousel-item-left + .carousel-item,
+  .multi-image.carousel-item-next.carousel-item-left
+    + .carousel-item
+    + .carousel-item {
     position: relative;
     transform: translate3d(-100%, 0, 0);
     visibility: visible;
   }
   /* farthest right hidden item must be also positioned for animations */
-  .multi-image.carousel-inner .carousel-item-prev.carousel-item-right {
+  .carousel-inner .multi-image.carousel-item-prev.carousel-item-right {
     position: absolute;
     top: 0;
     left: 0;
@@ -124,9 +127,12 @@ $my-default: 3rem; // Sets default y-axis margin
     visibility: visible;
   }
   /* right or prev direction */
-  .active.carousel-item-right + .carousel-item-prev.carousel-item-right,
-  .carousel-item-prev.carousel-item-right + .carousel-item,
-  .carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item {
+  .active.multi-image.carousel-item-right
+    + .carousel-item-prev.carousel-item-right,
+  .multi-image.carousel-item-prev.carousel-item-right + .carousel-item,
+  .multi-image.carousel-item-prev.carousel-item-right
+    + .carousel-item
+    + .carousel-item {
     position: relative;
     transform: translate3d(100%, 0, 0);
     visibility: visible;
@@ -146,12 +152,12 @@ $my-default: 3rem; // Sets default y-axis margin
     + .carousel-item {
     transition: none;
   }
-  .multi-image.carousel-inner .carousel-item-next {
+  .carousel-inner .multi-image.carousel-item-next {
     position: relative;
     transform: translate3d(0, 0, 0);
   }
   /* left or forward direction */
-  .carousel-item-next.carousel-item-left
+  .multi-image.carousel-item-next.carousel-item-left
     + .carousel-item
     + .carousel-item
     + .carousel-item {
@@ -160,7 +166,7 @@ $my-default: 3rem; // Sets default y-axis margin
     visibility: visible;
   }
   /* right or prev direction */
-  .carousel-item-prev.carousel-item-right
+  .multi-image.carousel-item-prev.carousel-item-right
     + .carousel-item
     + .carousel-item
     + .carousel-item {
@@ -203,7 +209,7 @@ $my-default: 3rem; // Sets default y-axis margin
     visibility: visible;
   }
   /* left or forward direction */
-  .carousel-item-next.carousel-item-left
+  .multi-image.carousel-item-next.carousel-item-left
     + .carousel-item
     + .carousel-item
     + .carousel-item
@@ -213,7 +219,7 @@ $my-default: 3rem; // Sets default y-axis margin
     visibility: visible;
   }
   /* right or prev direction //t - previous slide direction last item animation fix */
-  .carousel-item-prev.carousel-item-right
+  .multi-image.carousel-item-prev.carousel-item-right
     + .carousel-item
     + .carousel-item
     + .carousel-item
