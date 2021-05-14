@@ -25,19 +25,18 @@ ScrollOut({
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
+(function ($) {
+  var $window = $(window),
+    $body = $('body'),
+    $wrapper = $('#wrapper');
 
-// (function ($) {
-//   var $window = $(window),
-//     $body = $('body'),
-//     $wrapper = $('#wrapper');
-
-//   // Play initial animations on page load.
-//   $window.on('load', function () {
-//     window.setTimeout(function () {
-//       $body.removeClass('is-preload');
-//     }, 100);
-//   });
-// })(jQuery);
+  // Play initial animations on page load.
+  $window.on('load', function () {
+    window.setTimeout(function () {
+      $body.removeClass('is-preload');
+    }, 100);
+  });
+})(jQuery);
 
 //Waypoints. This code is used to change navbar on scroll past banner.
 const waypoint = new Waypoint({

@@ -1,3 +1,5 @@
+@import './transitions/transitions-banner/_banner.scss';
+
 @import './components/carousel-banner.scss';
 @import './components/image.scss';
 @import './components/bootstrap-theme.scss';
@@ -88,7 +90,7 @@ $my-default: 3rem; // Sets default y-axis margin
   }
 }
 @media (min-width: 576px) {
-  .carousel-item {
+  .multi-image.carousel-item {
     margin-right: 0;
   }
   /* show 2 items */
@@ -126,7 +128,7 @@ $my-default: 3rem; // Sets default y-axis margin
     display: block;
     visibility: visible;
   }
-  /* right or prev direction */
+  // /* right or prev direction */
   .active.multi-image.carousel-item-right
     + .carousel-item-prev.carousel-item-right,
   .multi-image.carousel-item-prev.carousel-item-right + .carousel-item,
