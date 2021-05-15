@@ -6,7 +6,9 @@ $h3-font-size: $font-size-base * 3.5;
 $h4-font-size: $font-size-base * 3;
 $h5-font-size: $font-size-base * 2.5;
 
-//Change theme colors or add any new ones you wish
+// Define color variables, then add them to the $theme-colors map; You can add custom colors as well
+// Ex: $primary: red;
+
 $theme-colors: (
   // 'primary': $primary,
   // 'secondary': $secondary,

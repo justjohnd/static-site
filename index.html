@@ -25,16 +25,13 @@
       crossorigin="anonymous"
     ></script>
 
-    <!-- These are for waypoints -->
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.0/jquery.waypoints.js"></script>
-
     <link rel="stylesheet" href="./dist/assets/css/styles.css" />
 
     <title>Hello, world!</title>
   </head>
 
   <body class="is-preload">
+    <!-- Navbar -->
     <nav
       id="nav"
       class="navbar navbar-expand-lg navbar-light bg-transparent fixed-top"
@@ -125,6 +122,7 @@
         ></li>
         <li data-target="#carousel-banner" data-slide-to="1"></li>
         <li data-target="#carousel-banner" data-slide-to="2"></li>
+        <li data-target="#carousel-banner" data-slide-to="3"></li>
       </ol>
       <div class="carousel-inner">
         <div class="carousel-item img-darken active">
@@ -147,11 +145,11 @@
           <img
             id="js-random-img"
             class="d-block img-slider"
-            src="./src/img/img2.jpg"
+            src="./src/img/img3.jpg"
             alt="Third slide"
           />
         </div>
-        <div class="carousel-header">
+        <div class="img-text">
           <h1 class="h1 text-center text-light">PAGE HEADING</h1>
           <h3 class="h3 text-center text-light">Subheading</h3>
           <div class="text-center">
@@ -179,8 +177,6 @@
       </a>
     </div>
 
-    <div id="js-navbar"></div>
-
     <!-- Multiple Image Carousel -->
     <div class="top-content mb-5">
       <div class="container-fluid">
@@ -188,7 +184,7 @@
           id="carousel-multi-image"
           class="carousel slide"
           data-ride="carousel"
-          data-interval="1000"
+          data-interval="2000"
         >
           <div
             class="carousel-inner multi-image row w-100 mx-auto"
@@ -329,6 +325,148 @@
         </div>
       </div>
     </div>
+
+    <!-- js-navbar triggers the Waypoints package. This is used to transition the navbar to a solid color background at the point where js-navbar is scrolled passed -->
+    <div id="js-navbar"></div>
+
+    <!-- Accordian -->
+    <div class="container">
+      <div class="accordion" id="accordionExample">
+        <div class="card">
+          <div class="card-header" id="headingOne">
+            <h2 class="mb-0">
+              <button
+                class="btn btn-link btn-block text-left"
+                type="button"
+                data-toggle="collapse"
+                data-target="#collapseOne"
+                aria-expanded="true"
+                aria-controls="collapseOne"
+              >
+                Collapsible Group Item #1
+              </button>
+            </h2>
+          </div>
+
+          <div
+            id="collapseOne"
+            class="collapse show"
+            aria-labelledby="headingOne"
+            data-parent="#accordionExample"
+          >
+            <div class="card-body">
+              Some placeholder content for the first accordion panel. This panel
+              is shown by default, thanks to the <code>.show</code> class.
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header" id="headingTwo">
+            <h2 class="mb-0">
+              <button
+                class="btn btn-link btn-block text-left collapsed"
+                type="button"
+                data-toggle="collapse"
+                data-target="#collapseTwo"
+                aria-expanded="false"
+                aria-controls="collapseTwo"
+              >
+                Collapsible Group Item #2
+              </button>
+            </h2>
+          </div>
+          <div
+            id="collapseTwo"
+            class="collapse"
+            aria-labelledby="headingTwo"
+            data-parent="#accordionExample"
+          >
+            <div class="card-body">
+              Some placeholder content for the second accordion panel. This
+              panel is hidden by default.
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header" id="headingThree">
+            <h2 class="mb-0">
+              <button
+                class="btn btn-link btn-block text-left collapsed"
+                type="button"
+                data-toggle="collapse"
+                data-target="#collapseThree"
+                aria-expanded="false"
+                aria-controls="collapseThree"
+              >
+                Collapsible Group Item #3
+              </button>
+            </h2>
+          </div>
+          <div
+            id="collapseThree"
+            class="collapse"
+            aria-labelledby="headingThree"
+            data-parent="#accordionExample"
+          >
+            <div class="card-body">
+              And lastly, the placeholder content for the third and final
+              accordion panel. This panel is hidden by default.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap Modal -->
+    <!-- Button trigger modal -->
+    <button
+      type="button"
+      class="btn btn-primary"
+      data-toggle="modal"
+      data-target="#exampleModal"
+    >
+      Launch demo modal
+    </button>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">...</div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Background Geometries. These are to be manupulate and inserted into other containers at a lower z-index -->
+    <div class="background-shape"></div>
 
     <!-- BS Grid: 7 cells-->
     <div class="container" data-scroll>
@@ -513,6 +651,276 @@
               <a href="#" class="card-link">Card link</a>
               <a href="#" class="card-link">Another link</a>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BS Gallery Modal -->
+    <div data-scroll id="gallery-container" class="container mw-100 px-0">
+      <div
+        class="row mx-0 justify-content-between"
+        id="gallery"
+        data-toggle="modal"
+        data-target="#exampleModal"
+      >
+        <div class="col-12 col-sm-6 col-lg-4">
+          <img
+            class="w-100"
+            src="https://source.unsplash.com/user/erondu/400x300"
+            data-target="#gallery-carousel"
+            data-slide-to="0"
+          />
+        </div>
+        <div class="col-12 col-sm-6 col-lg-4">
+          <img
+            class="w-100"
+            src="https://source.unsplash.com/user/aselter/400x300"
+            data-target="#gallery-carousel"
+            data-slide-to="1"
+          />
+        </div>
+        <div class="col-12 col-sm-6 col-lg-4">
+          <img
+            class="w-100"
+            src="https://source.unsplash.com/user/stevendiazphoto/400x300"
+            data-target="#gallery-carousel"
+            data-slide-to="2"
+          />
+        </div>
+        <div class="col-12 col-sm-6 col-lg-4">
+          <img
+            class="w-100"
+            src="https://source.unsplash.com/user/yubiucup/400x300"
+            data-target="#gallery-carousel"
+            data-slide-to="3"
+          />
+        </div>
+        <div class="col-12 col-sm-6 col-lg-4">
+          <img
+            class="w-100"
+            src="https://source.unsplash.com/user/jezael/400x300"
+            data-target="#gallery-carousel"
+            data-slide-to="4"
+          />
+        </div>
+        <div class="col-12 col-sm-6 col-lg-4">
+          <img
+            class="w-100"
+            src="https://source.unsplash.com/user/sarulz/400x300"
+            data-target="#gallery-carousel"
+            data-slide-to="5"
+          />
+        </div>
+      </div>
+
+      <!-- Modal markup: https://getbootstrap.com/docs/4.4/components/modal/ -->
+      <div
+        class="modal fade"
+        id="exampleModal"
+        tabindex="-1"
+        role="dialog"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">×</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <!-- Carousel markup: https://getbootstrap.com/docs/4.4/components/carousel/ -->
+              <div
+                id="gallery-carousel"
+                class="carousel slide"
+                data-ride="carousel"
+              >
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <img
+                      class="d-block w-100"
+                      src="https://source.unsplash.com/random/400x300"
+                    />
+                  </div>
+                  <div class="carousel-item">
+                    <img
+                      class="d-block w-100"
+                      src="https://source.unsplash.com/random/400x300"
+                    />
+                  </div>
+                  <div class="carousel-item">
+                    <img
+                      class="d-block w-100"
+                      src="https://source.unsplash.com/random/400x300"
+                    />
+                  </div>
+                  <div class="carousel-item">
+                    <img
+                      class="d-block w-100"
+                      src="https://source.unsplash.com/random/400x300"
+                    />
+                  </div>
+                  <div class="carousel-item">
+                    <img
+                      class="d-block w-100"
+                      src="https://source.unsplash.com/random/400x300"
+                    />
+                  </div>
+                  <div class="carousel-item">
+                    <img
+                      class="d-block w-100"
+                      src="https://source.unsplash.com/random/400x300"
+                    />
+                  </div>
+                  <a
+                    class="carousel-control-prev"
+                    href="#gallery-carousel"
+                    role="button"
+                    data-slide="prev"
+                  >
+                    <span
+                      class="carousel-control-prev-icon"
+                      aria-hidden="true"
+                    ></span>
+                    <span class="sr-only">Previous</span>
+                  </a>
+                  <a
+                    class="carousel-control-next"
+                    href="#gallery-carousel"
+                    role="button"
+                    data-slide="next"
+                  >
+                    <span
+                      class="carousel-control-next-icon"
+                      aria-hidden="true"
+                    ></span>
+                    <span class="sr-only">Next</span>
+                  </a>
+                </div>
+              </div>
+
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-dismiss="modal"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BS Contact Form -->
+    <section data-scroll class="container w-75">
+      <h2 class="h2 text-center">CONTACT US</h2>
+      <form>
+        <div class="form-group">
+          <label for="formName">Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="formName"
+            aria-describedby=""
+            placeholder="Enter your Name"
+          />
+        </div>
+        <div class="form-group">
+          <label for="formEmail">Email</label>
+          <input
+            type="email"
+            class="form-control"
+            id="formEmail"
+            placeholder="Enter your email address"
+          />
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlTextarea1">Your message</label>
+          <textarea
+            class="form-control"
+            id="exampleFormControlTextarea1"
+            rows="5"
+          ></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </section>
+
+    <!-- BS Footer -->
+    <!-- Mobile Sticky Footer. Note: if using this footer, move any footer links to the mobile menu -->
+    <div class="d-sm-block d-md-none">
+      <button class="btn btn-primary btn-full-width btn-block">
+        STICKY FOOTER BUTTON
+      </button>
+    </div>
+
+    <div class="bg-dark d-none d-md-block">
+      <div class="container mb-0">
+        <div class="row py-2">
+          <div class="col-sm-12 col-md-8">
+            <div class="row">
+              <div class="col-lg-12">
+                <ul
+                  class="
+                    mb-0
+                    text-left
+                    d-flex
+                    justify-content-center justify-content-md-start
+                  "
+                >
+                  <li>
+                    <a href="" target="_blank" rel="noopener noreferrer">
+                      <i class="h4 fab fa-facebook-square mr-4"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="" target="_blank" rel="noopener noreferrer">
+                      <i class="h4 fab fa-instagram-square"></i>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-lg-12">
+                <ul
+                  class="
+                    font-weight-bold
+                    mb-0
+                    d-flex
+                    justify-content-center justify-content-md-start
+                  "
+                >
+                  <li class="pl-0 mr-4">
+                    <a class="text-light" href="">TERMS OF USE</a>
+                  </li>
+                  <li class="">
+                    <a class="text-light mr-4" href="">PRIVACY POLICY</a>
+                  </li>
+                  <li class="">
+                    <a class="text-light" href="">CONTACT</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div
+            class="
+              text-white
+              col-sm-12 col-md-4
+              d-flex
+              align-items-end
+              justify-content-center justify-content-md-end
+            "
+          >
+            <p class="mb-0">Company name</p>
           </div>
         </div>
       </div>

@@ -112,7 +112,15 @@ function renderGalleryItem() {
 } // export default test;
 
 
-/* harmony default export */ __webpack_exports__["default"] = (renderGalleryItem);
+/* harmony default export */ __webpack_exports__["default"] = (renderGalleryItem); // Place this in index.js:
+// import renderGalleryItem from './helpers/randomImg.js';
+// //Add random unsplash images for development
+// renderGalleryItem(
+//   'js-random-img-1',
+//   'js-random-img-2',
+//   'js-random-img-3',
+//   'js-random-img-4'
+// );
 
 /***/ }),
 
