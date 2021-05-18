@@ -1,5 +1,5 @@
 @import './transitions/transitions-banner/_banner.scss';
-@import './transitions/fade-in.scss';
+@import './transitions/fade.scss';
 @import './transitions/scroll-up.scss';
 
 @import './bootstrap-theme.scss';
@@ -51,4 +51,6 @@ ul {
   clip-path: polygon(0 0, 100% 0, 100% 100%, 0 80%);
 }
 
-// Accordion
+//Position test
+.carousel {
+}

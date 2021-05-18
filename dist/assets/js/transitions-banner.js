@@ -81,60 +81,48 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./src/js/helpers/randomImg.js":
-/*!*************************************!*\
-  !*** ./src/js/helpers/randomImg.js ***!
-  \*************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ "./src/js/helpers/transitions-banner.js":
+/*!**********************************************!*\
+  !*** ./src/js/helpers/transitions-banner.js ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-function renderGalleryItem() {
-  var _arguments = arguments;
+/*
+	Story by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+*/
+(function ($) {
+  var $window = $(window),
+      $body = $('body'),
+      $wrapper = $('#wrapper'); // Play initial animations on page load.
 
-  var _loop = function _loop(i) {
-    var imageId = _arguments[i];
-    var randomNumber = Math.floor(Math.random() * 242);
-    fetch("https://source.unsplash.com/collection/1163637/1024x768/?sig=".concat(randomNumber)).then(function (response) {
-      document.getElementById(imageId).src = response.url;
-    });
-  };
-
-  for (var i = 0; i < arguments.length; i++) {
-    _loop(i);
-  }
-} // export default test;
-
-
-/* harmony default export */ __webpack_exports__["default"] = (renderGalleryItem); // Place this in index.js:
-// import renderGalleryItem from './helpers/randomImg.js';
-// //Add random unsplash images for development
-// renderGalleryItem(
-//   'js-random-img-1',
-//   'js-random-img-2',
-//   'js-random-img-3',
-//   'js-random-img-4'
-// );
+  $window.on('load', function () {
+    window.setTimeout(function () {
+      $body.removeClass('is-preload');
+    }, 100);
+  });
+})(jQuery);
 
 /***/ }),
 
-/***/ 3:
-/*!*******************************************!*\
-  !*** multi ./src/js/helpers/randomImg.js ***!
-  \*******************************************/
+/***/ 4:
+/*!****************************************************!*\
+  !*** multi ./src/js/helpers/transitions-banner.js ***!
+  \****************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\John\Documents\webDevelopment\static-site\src\js\helpers\randomImg.js */"./src/js/helpers/randomImg.js");
+module.exports = __webpack_require__(/*! C:\Users\John\Documents\webDevelopment\static-site\src\js\helpers\transitions-banner.js */"./src/js/helpers/transitions-banner.js");
 
 
 /***/ })
 
 /******/ });
-//# sourceMappingURL=randomImg.js.map
+//# sourceMappingURL=transitions-banner.js.map
