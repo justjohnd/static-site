@@ -5794,7 +5794,6 @@ $('#carousel-multi-image').on('slide.bs.carousel', function (e) {
     */
   var $e = $(e.relatedTarget);
   var idx = $e.index();
-  console.log(idx);
   var itemsPerSlide = 4;
   var totalItems = $('#carousel-multi-image .carousel-item').length;
 

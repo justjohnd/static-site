@@ -63,7 +63,10 @@ function sass() {
   ].filter(Boolean);
 
   return gulp
-    .src('src/sass/styles.scss')
+    .src([
+      'src/sass/styles.scss',
+      'node_modules/@fortawesome/fontawesome-free/css/all.css',
+    ])
     .pipe($.sourcemaps.init())
     .pipe(
       $.sass({
