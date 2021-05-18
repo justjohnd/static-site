@@ -1,5 +1,6 @@
 import ScrollOut from 'scroll-out';
 import '../../node_modules/waypoints/lib/jquery.waypoints.min.js';
+import '../../node_modules/@fortawesome/fontawesome-free/js/all.js';
 // import bootstrap from 'bootstrap';
 
 import './helpers/carousel-multi-image.js';
