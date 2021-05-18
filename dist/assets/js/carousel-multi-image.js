@@ -81,60 +81,56 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./src/js/helpers/randomImg.js":
-/*!*************************************!*\
-  !*** ./src/js/helpers/randomImg.js ***!
-  \*************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ "./src/js/helpers/carousel-multi-image.js":
+/*!************************************************!*\
+  !*** ./src/js/helpers/carousel-multi-image.js ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-function renderGalleryItem() {
-  var _arguments = arguments;
+// Multiple Carousel slides
+$('#carousel-multi-image').on('slide.bs.carousel', function (e) {
+  /*
+        CC 2.0 License Iatek LLC 2018 - Attribution required
+    */
+  var $e = $(e.relatedTarget);
+  var idx = $e.index();
+  console.log(idx);
+  var itemsPerSlide = 4;
+  var totalItems = $('#carousel-multi-image .carousel-item').length;
 
-  var _loop = function _loop(i) {
-    var imageId = _arguments[i];
-    var randomNumber = Math.floor(Math.random() * 242);
-    fetch("https://source.unsplash.com/collection/1163637/1024x768/?sig=".concat(randomNumber)).then(function (response) {
-      document.getElementById(imageId).src = response.url;
-    });
-  };
+  if (idx >= totalItems - (itemsPerSlide - 1)) {
+    var it = itemsPerSlide - (totalItems - idx);
 
-  for (var i = 0; i < arguments.length; i++) {
-    _loop(i);
+    for (var i = 0; i < it; i++) {
+      // append slides to end
+      if (e.direction == 'left') {
+        $('#carousel-multi-image .carousel-item').eq(i).appendTo('#carousel-multi-image .carousel-inner');
+      } else {
+        $('#carousel-multi-image .carousel-item').eq(0).appendTo('#carousel-multi-image .carousel-inner');
+      }
+    }
   }
-} // export default test;
-
-
-/* harmony default export */ __webpack_exports__["default"] = (renderGalleryItem); // Place this in index.js:
-// import renderGalleryItem from './helpers/randomImg.js';
-// //Add random unsplash images for development
-// renderGalleryItem(
-//   'js-random-img-1',
-//   'js-random-img-2',
-//   'js-random-img-3',
-//   'js-random-img-4'
-// );
+});
 
 /***/ }),
 
-/***/ 3:
-/*!*******************************************!*\
-  !*** multi ./src/js/helpers/randomImg.js ***!
-  \*******************************************/
+/***/ 1:
+/*!******************************************************!*\
+  !*** multi ./src/js/helpers/carousel-multi-image.js ***!
+  \******************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\John\Documents\webDevelopment\static-site\src\js\helpers\randomImg.js */"./src/js/helpers/randomImg.js");
+module.exports = __webpack_require__(/*! C:\Users\John\Documents\webDevelopment\static-site\src\js\helpers\carousel-multi-image.js */"./src/js/helpers/carousel-multi-image.js");
 
 
 /***/ })
 
 /******/ });
-//# sourceMappingURL=randomImg.js.map
+//# sourceMappingURL=carousel-multi-image.js.map

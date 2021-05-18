@@ -1,0 +1,30 @@
+//Fade in
+$fade-time: 2s;
+
+.fade-in {
+  animation: fadeIn $fade-time;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+//Fade to right
+.fade-right {
+  animation: fadeRight $fade-time;
+}
+
+@keyframes fadeRight {
+  0% {
+    opacity: 0;
+    transform: translateX(1rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(1rem);
+  }
+}

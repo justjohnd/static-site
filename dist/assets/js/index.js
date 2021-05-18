@@ -814,6 +814,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _helpers_navbar_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./helpers/navbar.js */ "./src/js/helpers/navbar.js");
 /* harmony import */ var _helpers_navbar_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_helpers_navbar_js__WEBPACK_IMPORTED_MODULE_3__);
 
+ // import bootstrap from 'bootstrap';
 
 
  //Set up ScrollOut module. This module makes elements appear on the screen when they come into view on scroll
@@ -822,6 +823,23 @@ scroll_out__WEBPACK_IMPORTED_MODULE_0___default()({
   threshold: 0.2,
   once: true
 });
+/*
+	Story by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+*/
+
+(function ($) {
+  var $window = $(window),
+      $body = $('body'),
+      $wrapper = $('#wrapper'); // Play initial animations on page load.
+
+  $window.on('load', function () {
+    window.setTimeout(function () {
+      $body.removeClass('is-preload');
+    }, 100);
+  });
+})(jQuery);
 
 /***/ }),
 

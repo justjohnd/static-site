@@ -25,7 +25,7 @@ const $ = plugins();
 // Check for --production flag
 const PRODUCTION = !!yargs.argv.production;
 
-const PORT = 9999;
+const PORT = 1000;
 
 const PATHS = {
   DIST: 'dist',
@@ -133,22 +133,20 @@ function javascript() {
 //  HTML Minify
 function minifyHTML() {
   return gulp
-    .src(['./src/**/*.html', './index.html', '!./dist'])
+    .src('src/partials/**/*.html')
     .pipe(
       htmlmin({
         collapseWhitespace: true,
       })
     )
-    .pipe(gulp.dest(`${PATHS.ASSETS}`));
+    .pipe(gulp.dest(`${PATHS.DIST}`));
 }
 exports.minifyHTML = minifyHTML;
 
 function server(done) {
   browser.init(
     {
-      server: {
-        baseDir: `./`,
-      },
+      server: PATHS.DIST,
       port: PORT,
     },
     done
